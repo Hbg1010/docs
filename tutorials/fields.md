@@ -60,6 +60,8 @@ class $modify(PlayerObject) {
 };
 ```
 
+> :information_source: Each ```m_fields``` call is expensive, as each use calls ```m_fields.self()```. If you plan on using Fields multiple times in a function, it is recommend to store ```m_fields.self()``` to a variable inside the function, and to then access Fields data from that variable instead. 
+
 ## Note about addresses
 
 > :warning: If you are still using the old fields (which do not use the `Fields` struct), those ones are constructed and destructed in a different address than they exist normally (required for space optimization), so **if you have a class that depends on the address of `this` inside the constructor/destructor**, use `std::unique_ptr` to contain the said object. One such example would be Geode's events, since they are registered to a global map in their constructor.
